@@ -12,7 +12,7 @@ connectDB();
 // app.use(cors());
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://habit-tracker-xi-two.vercel.app/", // replace with your actual Vercel domain
+  "https://habit-tracker-xi-two.vercel.app", // replace with your actual Vercel domain
 ];
 
 app.use(
