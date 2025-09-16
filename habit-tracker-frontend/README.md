@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+# Frontend Deployed of Vercel
+
+The application is deployed on Vercel and can be accessed here: https://habit-tracker-xi-two.vercel.app/
+
 ## Getting Started
 
 First, run the development server:
