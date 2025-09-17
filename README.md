@@ -1,6 +1,6 @@
 # Habit Tracker Web App
 
-This is a full-stack application designed to help users establish and maintain new habits while promoting social accountability. Users can create and track their own habits, monitor their progress with features like streak counts, and connect with friends to see their recent check-ins and progress[cite: 694, 695].
+This is a full-stack application designed to help users establish and maintain new habits while promoting social accountability. Users can create and track their own habits, monitor their progress with features like streak counts, and connect with friends to see their recent check-ins and progress.
 
 ---
 
