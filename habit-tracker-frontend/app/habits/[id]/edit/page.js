@@ -7,7 +7,6 @@ import api from "../../../../lib/api";
 import { useRouter } from "next/navigation";
 
 export default function EditHabit({ params }) {
-  // ✅ unwrap the promise
   const { id } = use(params);
 
   const [habit, setHabit] = useState(null);

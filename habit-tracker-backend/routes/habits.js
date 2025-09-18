@@ -9,44 +9,6 @@ const router = express.Router();
 // @route   GET api/habits
 // @desc    Get all habits for the current user
 // @access  Private
-// router.get("/", auth, async (req, res) => {
-//   try {
-//     const habits = await Habit.find({ user: req.user.id }).sort({
-//       createdAt: -1,
-//     });
-//     //if there is nothing in the habbit for any user it is retuning a empty string with status 200
-//     // Get today's completions for each habit
-//     const today = new Date();
-//     today.setHours(0, 0, 0, 0);
-//     const tomorrow = new Date(today);
-//     tomorrow.setDate(tomorrow.getDate() + 1);
-
-//     const habitsWithCompletions = await Promise.all(
-//       habits.map(async (habit) => {
-//         const todayCompletion = await HabitCompletion.findOne({
-//           habit: habit._id,
-//           completedAt: {
-//             $gte: today,
-//             $lt: tomorrow,
-//           },
-//         });
-
-//         return {
-//           ...habit.toObject(),
-//           completedToday: !!todayCompletion,
-//         };
-//       })
-//     );
-
-//     res.json(habitsWithCompletions);
-//   } catch (err) {
-//     console.error(err.message);
-//     res.status(500).send("Server Error");
-//   }
-// });
-// routes/habits.js
-// ...
-// routes/habits.js (replace your current GET "/" route)
 router.get("/", auth, async (req, res) => {
   try {
     const habits = await Habit.find({ user: req.user.id }).sort({
@@ -80,7 +42,7 @@ router.get("/", auth, async (req, res) => {
 
         return {
           ...habit.toObject(),
-          completed: !!existingCompletion, // ✅ unified completed flag
+          completed: !!existingCompletion,
         };
       })
     );
@@ -275,7 +237,7 @@ router.post("/:id/complete", auth, async (req, res) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    // ---- COMPLETION CHECK ----
+    // COMPLETION CHECK
     let existingCompletion;
 
     if (habit.frequency === "daily") {
@@ -301,7 +263,7 @@ router.post("/:id/complete", auth, async (req, res) => {
         .json({ msg: "Habit already completed for this period" });
     }
 
-    // ---- CREATE COMPLETION ----
+    // CREATE COMPLETION
     const completion = new HabitCompletion({
       habit: req.params.id,
       user: req.user.id,
@@ -315,10 +277,10 @@ router.post("/:id/complete", auth, async (req, res) => {
 
     await completion.save();
 
-    // ---- UPDATE STATS ----
+    // UPDATE STATS
     habit.totalCompletions += 1;
 
-    // ---- STREAK LOGIC ----
+    // STREAK LOGIC
     if (habit.frequency === "daily") {
       const yesterday = new Date(today);
       yesterday.setDate(yesterday.getDate() - 1);
@@ -346,7 +308,7 @@ router.post("/:id/complete", auth, async (req, res) => {
       habit.currentStreak = lastWeekCompletion ? habit.currentStreak + 1 : 1;
     }
 
-    // ---- UPDATE LONGEST STREAK ----
+    // UPDATE LONGEST STREAK
     if (habit.currentStreak > habit.longestStreak) {
       habit.longestStreak = habit.currentStreak;
     }

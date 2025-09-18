@@ -8,19 +8,17 @@ import { useRouter } from "next/navigation";
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(undefined); // undefined = loading, null = not logged in
+  const [user, setUser] = useState(undefined);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      // use common to be consistent
       api.defaults.headers.common["x-auth-token"] = token;
       api
         .get("/api/auth/me")
         .then((res) => {
-          // backend returns plain user object, so use res.data
           setUser(res.data);
         })
         .catch(() => {
@@ -40,8 +38,7 @@ export function AuthProvider({ children }) {
     const token = res.data.token;
     if (token) {
       localStorage.setItem("token", token);
-      api.defaults.headers.common["x-auth-token"] = token; // keep consistent
-      // GET /me returns plain user object, so use res.data
+      api.defaults.headers.common["x-auth-token"] = token;
       const profile = await api.get("/api/auth/me");
       setUser(profile.data);
     }

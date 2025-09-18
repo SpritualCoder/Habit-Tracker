@@ -1,4 +1,4 @@
-// app/(whatever)/dashboard/page.jsx  (or DashboardPage.js)
+// app/dashboard/page.jsx  (or DashboardPage.js)
 // Dashboard page showing user's habits and allowing management
 "use client";
 import { useEffect, useState } from "react";
@@ -19,14 +19,13 @@ export default function DashboardPage() {
       return;
     }
     fetchHabits();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   async function fetchHabits() {
     setLoading(true);
     try {
-      const res = await api.get("/api/habits"); // ✅ correct endpoint
-      setHabits(res.data.habits || []); // backend always wraps in { habits: [...] }
+      const res = await api.get("/api/habits");
+      setHabits(res.data.habits || []);
     } catch (err) {
       console.error("Failed to fetch habits:", err);
       setHabits([]);
@@ -37,7 +36,7 @@ export default function DashboardPage() {
 
   async function completeHabit(id) {
     try {
-      await api.post(`/api/habits/${id}/complete`); // ✅ correct endpoint
+      await api.post(`/api/habits/${id}/complete`);
       fetchHabits();
     } catch (e) {
       console.error(e);

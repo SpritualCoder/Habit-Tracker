@@ -9,7 +9,7 @@ export default function FriendsPage() {
   const [results, setResults] = useState([]);
   const [following, setFollowing] = useState([]);
 
-  // Load following list on mount
+  // for loading following list on mount
   useEffect(() => {
     fetchFollowing();
   }, []);

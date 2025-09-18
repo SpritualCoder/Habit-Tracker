@@ -9,10 +9,9 @@ const app = express();
 connectDB();
 
 // Init Middleware
-// app.use(cors());
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://habit-tracker-xi-two.vercel.app", // replace with your actual Vercel domain
+  "https://habit-tracker-xi-two.vercel.app",
 ];
 
 app.use(
@@ -33,10 +32,10 @@ app.use(
 
 app.use(express.json());
 
-// Define Routes
-app.use("/api/auth", require("./routes/auth")); //Tested
-app.use("/api/habits", require("./routes/habits")); //Tested
-app.use("/api/friends", require("./routes/friends")); //Tested
+// Routes
+app.use("/api/auth", require("./routes/auth"));
+app.use("/api/habits", require("./routes/habits"));
+app.use("/api/friends", require("./routes/friends"));
 app.use("/api/feed", require("./routes/feed.js"));
 
 app.get("/", (req, res) => {

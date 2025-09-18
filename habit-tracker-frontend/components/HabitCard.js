@@ -42,14 +42,14 @@ export default function HabitCard({ habit, onComplete, onDeleted }) {
           {/* Complete button */}
           <button
             onClick={onComplete}
-            disabled={habit.completed} // ✅ changed here
+            disabled={habit.completed}
             className={`px-3 py-1 rounded ${
               habit.completed
                 ? "bg-gray-700"
                 : "bg-green-600 text-white hover:bg-green-700"
             }`}
           >
-            {habit.completed ? "Done" : "Complete"} {/* ✅ changed here */}
+            {habit.completed ? "Done" : "Complete"}
           </button>
 
           {/* Edit button */}

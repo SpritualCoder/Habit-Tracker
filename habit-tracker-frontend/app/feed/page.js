@@ -41,7 +41,6 @@ export default function FeedPage() {
 
   return (
     <div className="max-w-6xl mx-auto mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-      {/* Friends’ Activity (2/3 width) */}
       <section className="md:col-span-2">
         <h2 className="text-xl font-semibold mb-4">Friends’ Activity</h2>
         {feed.length === 0 ? (
@@ -67,7 +66,6 @@ export default function FeedPage() {
         )}
       </section>
 
-      {/* Leaderboard (1/3 width) */}
       <aside className="md:col-span-1">
         <h2 className="text-xl font-semibold mb-4">Leaderboard</h2>
         {leaderboard.length === 0 ? (

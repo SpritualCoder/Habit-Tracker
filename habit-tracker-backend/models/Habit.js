@@ -38,7 +38,7 @@ const HabitSchema = new mongoose.Schema(
   }
 );
 
-// Ensure unique habit names per user
+// This ensures unique habit names per user
 HabitSchema.index({ user: 1, name: 1 }, { unique: true });
 
 module.exports = mongoose.model("Habit", HabitSchema);
